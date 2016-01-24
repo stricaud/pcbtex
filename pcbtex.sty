@@ -1,0 +1,30 @@
+%%
+%% PCBTex, Copyright Sebastien Tricaud (C) 2016
+%% License: WTFPL
+%%
+\NeedsTeXFormat{LaTeX2e}[1994/06/01]
+\ProvidesPackage{pcbtex}[2016/01/23 Create PCB with LateX]
+
+\def\fileversion{2016/01/22}
+
+\usepackage{tikz}
+\usepackage{ifthen}
+
+\newcommand{\resistance}[3][h]{
+  \tikz{
+    \fill[black] (#2,#3) circle[radius=.5ex];
+
+    \ifthenelse{\equal{#1}{h}}{\fill[black] +(0.8,0) circle[radius=.5ex];}{}
+    \ifthenelse{\equal{#1}{v}}{\fill[black] +(0,0.8) circle[radius=.5ex];}{}
+    
+  }
+}
+
+\newcommand{\wire}[5][5pt]{
+  \tikz{
+    \draw[black, line width=#1] (#2,#3) -- (#4,#5);
+  }
+}
+
+
+\endinput
